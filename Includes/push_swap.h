@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 23:30:30 by proso             #+#    #+#             */
-/*   Updated: 2017/12/15 00:18:50 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/15 04:53:40 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,14 @@ typedef struct			s_data
 	t_db_list			*list_b;
 	t_list				*cmd_list;
 	int					min;
+	int					super_min;
+	int					max;
+	int					under_max;
+	int					start;
 	int					size_a;
+	int					size_b;
 	int					pos;
+	int					pos_list;
 }						t_data;
 
 int						print_error(int err);
@@ -57,5 +63,6 @@ void					rotate_up_ab(t_db_list *list_a, t_db_list *list_b);
 void					rotate_down_ab(t_db_list *list_a, t_db_list *list_b);
 int						is_sort(t_data *info, int print);
 int						sort_list(t_data *info);
+int						sort_list2(t_data *info);
 void					push_min(t_data *info);
 #endif

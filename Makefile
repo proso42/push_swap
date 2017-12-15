@@ -6,7 +6,7 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2017/12/15 00:19:51 by proso            ###   ########.fr        #
+#    Updated: 2017/12/15 04:07:26 by proso            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = check_argv.c \
 	  print_db_list.c \
 	  print_error.c \
 	  push_min.c \
-	  sort_list.c
+	  sort_list.c \
+	  sort_list2.c
 
 SRC2 = check_argv.c \
 	   commands.c \
@@ -41,7 +42,8 @@ SRC2 = check_argv.c \
  	   print_error.c \
 	   push_min.c \
 	   push_swap.c \
-	   sort_list.c
+	   sort_list.c \
+	   sort_list2.c \
 
 CC = gcc
 
