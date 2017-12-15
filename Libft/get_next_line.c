@@ -3,121 +3,120 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proso <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/05 09:24:39 by proso             #+#    #+#             */
-/*   Updated: 2017/04/05 20:21:34 by proso            ###   ########.fr       */
+/*   Created: 2016/11/17 13:44:47 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/12/15 01:18:02 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/libft.h"
+#include "Includes/get_next_line.h"
+#include <stdio.h>
 
-int		update_str(t_line **maillon, char **line)
+int						get_line(char **line, t_line **list)
 {
-	int		i;
-	char	*tmp;
+	int					i;
 
 	i = 0;
-	while (S[i] != '\0' && S[i] != '\n')
+	while ((*list)->stock[i] != '\0' && (*list)->stock[i] != '\n')
 		i++;
-	ft_strdel(&(*line));
-	*line = ft_strsub(S, 0, i);
-	if (S[i] == '\n')
+	if ((*list)->stock[i] == '\n')
 	{
-		tmp = ft_strsub(S, (i + 1), ft_strlen(S) - i + 1);
-		ft_strdel(&S);
-		S = ft_strdup(tmp);
-		ft_strdel(&tmp);
+		*line = ft_strsub((*list)->stock, 0, i);
+		(*list)->stock = ft_strsub((*list)->stock, i + 1,
+		ft_strlen((*list)->stock) - i + 1);
 	}
-	else if (S[i] == '\0')
+	else if ((*list)->stock[i] == '\0')
 	{
-		ft_strdel(&S);
+		if (i != 0)
+			*line = ft_strsub((*list)->stock, 0, i);
+		else
+			*line = ft_strnew(0);
+		(*list)->stock = ft_strnew(0);
 		if (i == 0)
 		{
-			(*maillon)->fd = 0;
+			(*list)->fd = 0;
 			return (0);
 		}
 	}
 	return (1);
 }
 
-t_line	*create_maillon(const int fd, t_line **list, char *str)
+t_line					*find_fd(t_line **list, int fd)
 {
-	t_line	*maillon;
-	t_line	*current;
+	t_line				*ptr;
 
-	current = *list;
-	if (!(maillon = (t_line*)malloc(sizeof(t_line))))
-		return (NULL);
-	maillon->fd = fd;
-	maillon->str = ft_strdup(str);
-	if (!current)
-		*list = maillon;
-	else
+	ptr = *list;
+	while (ptr != NULL)
 	{
-		while (current->next)
-			current = current->next;
-		current->next = maillon;
-	}
-	maillon->next = NULL;
-	return (maillon);
-}
-
-int		read_line(const int fd, t_line **list, t_line **maillon)
-{
-	char	buff[BUFF_SIZE + 1];
-	char	*str;
-	char	*tmp;
-	int		ret;
-	int		stop;
-
-	stop = 0;
-	str = ft_strnew(1);
-	while (!stop && (ret = read(fd, buff, BUFF_SIZE)))
-	{
-		if (ret == -1)
-			return (-1);
-		buff[ret] = '\0';
-		tmp = ft_strdup(str);
-		ft_strdel(&str);
-		str = ft_strjoin(tmp, buff);
-		ft_strdel(&tmp);
-		if (fd == 0)
-			stop = 1;
-	}
-	*maillon = create_maillon(fd, list, str);
-	ft_strdel(&str);
-	return (ret);
-}
-
-t_line	*find_fd(const int fd, t_line **list)
-{
-	t_line *current;
-
-	current = *list;
-	if (!current)
-		return (NULL);
-	while (current)
-	{
-		if (current->fd == fd && fd != 0)
-			return (current);
-		current = current->next;
+		if (ptr->fd == fd)
+			return (ptr);
+		ptr = ptr->next;
 	}
 	return (NULL);
 }
 
-int		get_next_line(const int fd, char **line)
+t_line					*new_line(t_line **list, int fd, char *stock)
 {
-	static t_line	*list = NULL;
-	t_line			*maillon;
-	int				ret;
+	t_line				*ptr;
+	t_line				*new;
 
-	if (BUFF_SIZE < 1 || fd < 0 || (!line))
-		return (-1);
-	maillon = list;
+	ptr = *list;
+	new = (t_line *)malloc(sizeof(t_line));
+	new->stock = ft_strdup(stock);
+	new->fd = fd;
+	if (!ptr)
+		*list = new;
+	else
+	{
+		while (ptr->next != NULL)
+			ptr = ptr->next;
+		ptr->next = new;
+	}
+	new->next = NULL;
+	return (new);
+}
+
+int						my_realloc(const int fd, t_line **list, t_line **ptr)
+{
+	char				*stock;
+	char				*prev;
+	char				buffer[BUFF_SIZE + 1];
+	int					ret;
+
 	ret = 1;
+	stock = ft_strnew(1);
+	while ((ret = read(fd, buffer, BUFF_SIZE)))
+	{
+		if (ret == -1)
+			return (ret);
+		buffer[ret] = '\0';
+		prev = ft_strdup(stock);
+		ft_strdel(&(stock));
+		stock = ft_strjoin(prev, buffer);
+		ft_strdel(&prev);
+	}
+	*ptr = new_line(list, fd, stock);
+	ft_strdel(&(stock));
+	return (ret);
+}
+
+int						get_next_line(const int fd, char **line)
+{
+	static t_line		*list = NULL;
+	t_line				*ptr;
+	int					ret;
+
+	ret = 1;
+	ptr = list;
+	if (fd < 0 || (!(line)) || BUFF_SIZE < 1)
+		return (-1);
+	if (!(*line))
+		*line = NULL;
 	*line = ft_strnew(0);
-	if (!(maillon = find_fd(fd, &list)))
-		ret = read_line(fd, &list, &maillon);
-	return ((ret == -1) ? -1 : update_str(&maillon, line));
+	if (!(ptr = find_fd(&list, fd)))
+		ret = my_realloc(fd, &list, &ptr);
+	if (ret == -1)
+		return (ret);
+	return (get_line(line, &ptr));
 }

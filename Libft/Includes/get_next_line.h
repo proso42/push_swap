@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proso <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 18:01:09 by proso             #+#    #+#             */
-/*   Updated: 2017/01/12 11:38:10 by proso            ###   ########.fr       */
+/*   Created: 2016/11/17 13:51:11 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/12/15 01:17:21 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 1024
-# define S (*maillon)->str
-# include <stdlib.h>
+
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include "libft.h"
 
-typedef struct				s_line
-{
-	int						fd;
-	char					*str;
-	struct s_line			*next;
-}							t_line;
+# define BUFF_SIZE 32
 
-int							get_next_line(const int fd, char **line);
+typedef	struct		s_line
+{
+	int				fd;
+	char			*stock;
+	struct s_line	*next;
+}					t_line;
+
+int					get_next_line(int const fd, char **line);
 
 #endif

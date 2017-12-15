@@ -6,7 +6,7 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2017/12/14 03:56:54 by proso            ###   ########.fr        #
+#    Updated: 2017/12/15 00:19:51 by proso            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,28 @@ SRC = check_argv.c \
 	  commands.c \
 	  commands2.c \
 	  db_list_last.c \
+	  db_list_size.c \
 	  db_push_back.c \
 	  db_push_front.c \
 	  db_remove_first.c \
 	  print_db_list.c \
-	  print_error.c
+	  print_error.c \
+	  push_min.c \
+	  sort_list.c
 
-SRC2 = push_swap.c
+SRC2 = check_argv.c \
+	   commands.c \
+ 	   commands2.c \
+ 	   db_list_last.c \
+	   db_list_size.c \
+ 	   db_push_back.c \
+ 	   db_push_front.c \
+ 	   db_remove_first.c \
+ 	   print_db_list.c \
+ 	   print_error.c \
+	   push_min.c \
+	   push_swap.c \
+	   sort_list.c
 
 CC = gcc
 
@@ -71,19 +86,19 @@ $(NAME): clr make_lib $(OBJ) $(OBJ2) $(INCLUDE)
 	@sleep 1
 	@clear
 	@echo "\x1b[32m\x1b[1mChecker sucessfully created ✓\x1b[0m"
-	@$(CC) $(FLAGS) -o $(NAME2) $(LIB) OBJ/check_argv.o OBJ/db* OBJ/print* OBJ/commands* $(OBJ2)
+	@$(CC) $(FLAGS) -o $(NAME2) $(LIB) $(OBJ2)
 	@sleep 1
 	@clear
 	@echo "\x1b[32m\x1b[1mPush_swap sucessfully created ✓\x1b[0m"
 
 clean:
 	@make clean -C Libft/
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(OBJ2)
 	@echo "\x1b[31m\x1b[1mAll objects deleted ✖\x1b[0m"
 
 fclean: clean
 	@make fclean -C Libft/
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME2)
 	@echo "\x1b[31m\x1b[1mExecutable deleted ✖\x1b[0m"
 
 local_clean:

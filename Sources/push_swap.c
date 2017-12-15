@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/14 23:07:13 by proso             #+#    #+#             */
+/*   Updated: 2017/12/15 00:19:23 by proso            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Includes/push_swap.h"
 
 int	main(int argc, char **argv)
@@ -9,6 +21,7 @@ int	main(int argc, char **argv)
 	info.cmd_list = NULL;
 	if (!(check_argv(&info, argv, argc)))
 		return (0);
-	print_db_list_ab(info.list_a, info.list_b);		
+	sort_list(&info);
+	ft_print_list(info.cmd_list);
 	return (0);
 }
