@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 03:48:51 by proso             #+#    #+#             */
-/*   Updated: 2017/12/15 01:19:31 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/22 04:31:24 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void	apply_commands(t_data *info)
 static int	is_valid_cmd(char *str)
 {
 	if (ft_strcmp(str, "pa") && ft_strcmp(str, "pb") && ft_strcmp(str, "sa")
-	 && ft_strcmp(str, "sb") && ft_strcmp(str, "ss") && ft_strcmp(str, "ra")
-	 && ft_strcmp(str, "rb") && ft_strcmp(str, "rr") && ft_strcmp(str, "rra")
-	 && ft_strcmp(str, "rrb") && ft_strcmp(str, "rrr"))
+	&& ft_strcmp(str, "sb") && ft_strcmp(str, "ss") && ft_strcmp(str, "ra")
+	&& ft_strcmp(str, "rb") && ft_strcmp(str, "rr") && ft_strcmp(str, "rra")
+	&& ft_strcmp(str, "rrb") && ft_strcmp(str, "rrr"))
 		return (0);
 	return (1);
 }

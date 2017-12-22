@@ -6,7 +6,7 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2017/12/15 04:07:26 by proso            ###   ########.fr        #
+#    Updated: 2017/12/22 02:14:24 by proso            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,16 @@ SRC = check_argv.c \
 	  db_push_back.c \
 	  db_push_front.c \
 	  db_remove_first.c \
+	  gen_tab_value.c \
+	  get_median.c \
+	  ligth_sort.c \
+	  median_sort.c \
 	  print_db_list.c \
 	  print_error.c \
 	  push_min.c \
-	  sort_list.c \
-	  sort_list2.c
+	  quick_sort.c \
+	  re_push_numbers.c \
+	  sort_list.c
 
 SRC2 = check_argv.c \
 	   commands.c \
@@ -38,12 +43,17 @@ SRC2 = check_argv.c \
  	   db_push_back.c \
  	   db_push_front.c \
  	   db_remove_first.c \
+	   gen_tab_value.c \
+	   get_median.c \
+	   ligth_sort.c \
+	   median_sort.c \
  	   print_db_list.c \
  	   print_error.c \
 	   push_min.c \
 	   push_swap.c \
-	   sort_list.c \
-	   sort_list2.c \
+	   quick_sort.c \
+	   re_push_numbers.c \
+	   sort_list.c
 
 CC = gcc
 

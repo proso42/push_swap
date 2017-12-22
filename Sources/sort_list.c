@@ -6,13 +6,13 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:07:59 by proso             #+#    #+#             */
-/*   Updated: 2017/12/15 00:52:04 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/22 04:32:12 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/push_swap.h"
 
-int	is_sort(t_data *info, int print)
+int			is_sort(t_data *info, int print)
 {
 	t_db_list	*current;
 
@@ -34,7 +34,7 @@ int	is_sort(t_data *info, int print)
 	return (1);
 }
 
-void	search_min(t_data *info)
+void		search_min(t_data *info)
 {
 	int			min;
 	int			pos;
@@ -74,7 +74,7 @@ static int	is_croissant(t_db_list *list_a)
 	return (1);
 }
 
-int		sort_list(t_data *info)
+int			sort_list(t_data *info)
 {
 	info->size_a = db_list_size(info->list_a);
 	while (info->size_a > 1 || !is_croissant(info->list_a))
