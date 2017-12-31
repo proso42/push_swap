@@ -6,20 +6,21 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 01:22:04 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 04:31:08 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 01:19:20 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/push_swap.h"
 
-void		add_value(t_data *info, int value, int i)
+t_db_list		*add_value(t_data *info, t_db_list *list, int i)
 {
 	int		j;
 
 	j = 0;
 	while (info->tab_value[i][j] != info->max + 1)
 		j++;
-	info->tab_value[i][j] = value;
+	info->tab_value[i][j] = list->data;
+	return (list->next);
 }
 
 int			get_next_tab(t_data *info)

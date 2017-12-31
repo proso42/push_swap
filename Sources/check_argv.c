@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 03:39:23 by proso             #+#    #+#             */
-/*   Updated: 2017/12/14 03:45:39 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 02:35:17 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				check_argv(t_data *info, char **argv, int argc)
 	int			j;
 	char		**tab;
 
-	i = 1;
+	i = (info->visu) ? 2 : 1;
 	while (i < argc)
 	{
 		tab = ft_strsplit(argv[i], ' ');

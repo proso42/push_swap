@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 23:30:30 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 03:22:58 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 15:02:41 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ typedef struct			s_data
 	t_db_list			*list_a;
 	t_db_list			*list_b;
 	t_list				*cmd_list;
+	int					visu;
 	int					min;
 	int					max;
+	int					max2;
 	int					pos;
 	int					median;
 	int					size_a;
@@ -68,7 +70,11 @@ void					push_min(t_data *info);
 int						get_median(t_db_list *list);
 void					gen_tab_value(t_data *info);
 int						get_next_tab(t_data *info);
-void					add_value(t_data *info, int value, int i);
+t_db_list			*add_value(t_data *info, t_db_list *list, int i);
 void					re_push_numbers(t_data *info);
 void					print_tab(long *tab, int max);
+void					opti(t_data *info, int i, int size);
+int						find_min(t_db_list *list_a);
+int						find_max(t_db_list *list_a);
+void  				loop_ra(t_data *info, int nb);
 #endif

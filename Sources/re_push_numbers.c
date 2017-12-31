@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 02:13:15 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 05:04:36 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 02:03:53 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,46 @@ static int	get_size_tab(long *tab, int max)
 	return (0);
 }
 
+static int	tab_sort(int size, t_db_list *list)
+{
+	t_db_list	*current;
+
+	current = list;
+	while (size > 1)
+	{
+		if (current->data > current->next->data)
+			return (0);
+		size--;
+		current = current->next;
+	}
+	return (1);
+}
+
+static int	full_ra(t_data *info, int size)
+{
+	while (size)
+	{
+		rotate_up(info->list_a);
+		ft_push_back(&info->cmd_list, ft_strdup("ra"));
+		size--;
+	}
+	return (size);
+}
+
 void		re_push_numbers(t_data *info)
 {
 	int		i;
 	int		size_tab;
 
-	i = get_next_tab(info) - 1;
-	if (i < 0)
+	if ((i = get_next_tab(info) - 1) < 0)
 		i = 0;
-	size_tab = get_size_tab(info->tab_value[i], info->max);
+	if ((size_tab = get_size_tab(info->tab_value[i], info->max)) <= 3)
+	{
+		opti(info, i, size_tab);
+		return ;
+	}
+	else if (tab_sort(size_tab, info->list_a))
+		size_tab = full_ra(info, size_tab);
 	while (size_tab)
 	{
 		push_b(&info->list_a, &info->list_b);

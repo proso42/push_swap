@@ -6,7 +6,7 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2017/12/22 02:14:24 by proso            ###   ########.fr        #
+#    Updated: 2017/12/24 00:37:16 by alexandra        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ SRC = check_argv.c \
 	  db_push_back.c \
 	  db_push_front.c \
 	  db_remove_first.c \
+		find_min_max.c \
 	  gen_tab_value.c \
 	  get_median.c \
 	  ligth_sort.c \
 	  median_sort.c \
+		opti.c \
 	  print_db_list.c \
 	  print_error.c \
 	  push_min.c \
@@ -43,10 +45,12 @@ SRC2 = check_argv.c \
  	   db_push_back.c \
  	   db_push_front.c \
  	   db_remove_first.c \
+		 find_min_max.c \
 	   gen_tab_value.c \
 	   get_median.c \
 	   ligth_sort.c \
 	   median_sort.c \
+		 opti.c \
  	   print_db_list.c \
  	   print_error.c \
 	   push_min.c \

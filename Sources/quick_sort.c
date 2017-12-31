@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 00:12:11 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 04:31:36 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 00:43:34 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void		quick_sort(t_data *info)
 	{
 		while (db_list_size(info->list_b) > 3)
 			median_sort_b(info);
-		ligth_sort(info);
+		if (info->list_b)
+			ligth_sort(info);
 		re_push_numbers(info);
 	}
 }

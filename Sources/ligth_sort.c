@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 01:57:51 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 05:03:27 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 00:58:19 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ static int	get_min(t_db_list *list)
 	return (min);
 }
 
+static void	suite_ligth_sort(t_data *info, int *size)
+{
+	push_a(&info->list_a, &info->list_b);
+	ft_push_back(&info->cmd_list, ft_strdup("pa"));
+	rotate_up(info->list_a);
+	ft_push_back(&info->cmd_list, ft_strdup("ra"));
+	(*size)--;
+}
+
 void		ligth_sort(t_data *info)
 {
 	int		size;
@@ -40,13 +49,14 @@ void		ligth_sort(t_data *info)
 	{
 		if (info->list_b->data == min)
 		{
-			push_a(&info->list_a, &info->list_b);
-			ft_push_back(&info->cmd_list, ft_strdup("pa"));
-			rotate_up(info->list_a);
-			ft_push_back(&info->cmd_list, ft_strdup("ra"));
-			size--;
+			suite_ligth_sort(info, &size);
 			if (size)
 				min = get_min(info->list_b);
+		}
+		else if (size == 3 && info->list_b->next->next->data == min)
+		{
+			rotate_down(info->list_b);
+			ft_push_back(&info->cmd_list, ft_strdup("rrb"));
 		}
 		else
 		{

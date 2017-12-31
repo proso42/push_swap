@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 03:48:51 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 04:31:24 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 15:02:06 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,25 @@
 
 static void	suite_apply_commands(t_data *info, t_list *current)
 {
-	if (!ft_strcmp(current->data, "rra"))
+	if (!ft_strcmp(current->data, "rr"))
+		rotate_up_ab(info->list_a, info->list_b);
+	else if (!ft_strcmp(current->data, "rra"))
 		rotate_down(info->list_a);
 	else if (!ft_strcmp(current->data, "rrb"))
 		rotate_down(info->list_b);
 	else
 		rotate_down_ab(info->list_a, info->list_b);
+}
+
+static void	print_visu(t_data *info)
+{
+	if (info->visu)
+	{
+		system("clear");
+		print_db_list_ab(info->list_a, info->list_b);
+		ft_putendl("----------------");
+		sleep(1);
+	}
 }
 
 static void	apply_commands(t_data *info)
@@ -43,11 +56,10 @@ static void	apply_commands(t_data *info)
 			rotate_up(info->list_a);
 		else if (!ft_strcmp(current->data, "rb"))
 			rotate_up(info->list_b);
-		else if (!ft_strcmp(current->data, "rr"))
-			rotate_up_ab(info->list_a, info->list_b);
 		else
 			suite_apply_commands(info, current);
 		current = current->next;
+		print_visu(info);
 	}
 }
 

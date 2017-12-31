@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:07:59 by proso             #+#    #+#             */
-/*   Updated: 2017/12/22 04:32:12 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 15:09:01 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			is_sort(t_data *info, int print)
 		current = current->next;
 	}
 	if (print)
-		ft_putstr_fd("OK\n", 1);
+		ft_dprintf(1, "{bold}{green}OK{res}\n");
 	return (1);
 }
 
@@ -77,7 +77,7 @@ static int	is_croissant(t_db_list *list_a)
 int			sort_list(t_data *info)
 {
 	info->size_a = db_list_size(info->list_a);
-	while (info->size_a > 1 || !is_croissant(info->list_a))
+	while (!is_croissant(info->list_a) && info->size_a > 1)
 	{
 		search_min(info);
 		push_min(info);

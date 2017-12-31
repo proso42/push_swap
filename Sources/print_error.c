@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 23:58:27 by proso             #+#    #+#             */
-/*   Updated: 2017/12/14 04:12:44 by proso            ###   ########.fr       */
+/*   Updated: 2017/12/27 02:44:57 by alexandra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int		print_error(int err)
 		exit(EXIT_FAILURE);
 	}
 	else if (err == ERR_ARG)
-		ft_putstr_fd("Error\n", 2);
+		ft_dprintf(2, "{red}{bold}Error{res}\n");
 	else if (err == ERR_KO)
-		ft_putstr_fd("KO\n", 1);
+		ft_dprintf(1, "{red}{bold}KO{res}\n");
 	return (0);
 }
